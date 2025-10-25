@@ -60,4 +60,9 @@ void Book::setBorrowerName(const string& _name) {
     borrowerName = _name; 
 }
 
+// Q qlq emprunte un livre, on passe son nom dans la fonction borrwer
+void Book::checkOut(const string& borrower){
+    isAvailable = false; // q qlq emprente livre , il nest plus dispo
+    borrowerName = borrower; 
+}
 
