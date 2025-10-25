@@ -91,9 +91,9 @@ string Book::toFileFormat() const {
     string description = title + "|" + author + "|" + isbn + "|";
 
     if (isAvailable)
-        description += "| 1 ";
+        description += "1|";
     else 
-        description += "| 0 ";
+        description += "0|";
 
     //s’il y en a un emprenteur
     description += borrowerName;
