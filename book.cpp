@@ -26,4 +26,20 @@ Book::Book(const string& title, const string& author, const string& isbn) {
     this->borrowerName = "";
 }
 
+// Getters
+string Book::getTitle() const {
+    return title;
+}
+string Book::getAuthor() const {
+    return author;
+}
+string Book::getISBN() const {
+     return isbn;
+     }
+bool Book::getAvailability() const { 
+    return isAvailable; 
+}
+string Book::getBorrowerName() const { 
+    return borrowerName; 
+}
 
