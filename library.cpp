@@ -257,7 +257,7 @@ int Library::getAvailableBookCount() const {
 }
 int Library::getCheckedOutBookCount() const { return getTotalBooks() - getAvailableBookCount(); }
 
-//Fonction pour sauvgarder les changement avec date dans un fichier logs.txt
+//Fonction pour sauvgarder les données avec date dans un fichier logs.txt
 void Library::sauvegardeFichier(const string& message) {
     ofstream fichier("logs.txt", ios::app);
     if (!fichier.is_open()) {
