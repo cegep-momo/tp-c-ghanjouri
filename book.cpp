@@ -71,20 +71,15 @@ void Book::returnBook(){
 }
 
 string Book::toString() const {
-    string statut;
+    string resultat = title + " | " + author + " | " + isbn + " | ";
+   
 
-    // etat du livre
     if (isAvailable)
-        statut = "Disponible";
+        resultat += "Disponible";
     else
-        statut= "Emprunté";
+        resultat += "Emprunté par: " + borrowerName;
 
-    // si livre est emprunté, on ajoute le nom
-    if (!isAvailable && !borrowerName.empty()) {
-        statut += " (emprunté par: " + borrowerName + ")";
-    }
-
-    return statut;
+    return resultat;
 }
 // sauvgarder les livre dans un fichier  
 string Book::toFileFormat() const {
