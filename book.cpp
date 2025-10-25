@@ -1,7 +1,6 @@
 #include "book.h"
 #include <sstream>
-#include <vector>
-#include <algorithm>
+
 
 using namespace std;
 
@@ -87,6 +86,7 @@ string Book::toString() const {
 
     return statut;
 }
+// sauvgarder les livre dans un fichier  
 string Book::toFileFormat() const {
     string description = title + "|" + author + "|" + isbn + "|";
 
@@ -95,11 +95,27 @@ string Book::toFileFormat() const {
     else 
         description += "| 0 ";
 
-        //s’il y en a un emprenteur
+    //s’il y en a un emprenteur
     description += borrowerName;
 
     return description;
 }
+// lire les livre depuis le fichier
+void Book::fromFileFormat(const string& line){
 
+    istringstream iss(line);
+    string availableStr;
+
+    getline(iss, title, '|');
+    getline(iss, author, '|');
+    getline(iss, isbn, '|');
+    getline(iss, availableStr, '|');
+    getline(iss, borrowerName, '|');
+
+    if (availableStr == "1")
+        isAvailable = true;
+    else
+        isAvailable = false;
+}
 
 
