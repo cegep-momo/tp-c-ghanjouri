@@ -48,6 +48,9 @@ public:
     int getTotalBooks() const;
     int getAvailableBookCount() const;
     int getCheckedOutBookCount() const;
+
+    //Sauvgarde dans un fichier les changement 
+    void sauvegardeFichier(const string& message);
 };
 
 #endif

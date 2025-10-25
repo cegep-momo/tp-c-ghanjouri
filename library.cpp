@@ -1,12 +1,15 @@
 #include <iostream>
 #include <algorithm>
-
 #include "library.h"
+#include <fstream>
+#include <ctime>
 
 using namespace std;
 
 // Constructor
 Library::Library() {}
+
+
 
 // Add book to library
 void Library::addBook(const Book& book) {
@@ -123,6 +126,8 @@ bool Library::checkOutBook(const string& isbn, const string& userId) {
     if (book && user && book->getAvailability()) {
         book->checkOut(user->getName());
         user->borrowBook(isbn);
+        sauvegardeFichier("Livre emprunté -> " + book->getTitle() + " par " + user->getName());
+
         return true;
     }
     return false;
@@ -141,6 +146,8 @@ bool Library::returnBook(const string& isbn) {
             }
         }
         book->returnBook();
+        sauvegardeFichier("Livre retourné par  " + book->getTitle());
+
         return true;
     }
     return false;
@@ -249,3 +256,21 @@ int Library::getAvailableBookCount() const {
         });
 }
 int Library::getCheckedOutBookCount() const { return getTotalBooks() - getAvailableBookCount(); }
+
+//Fonction pour sauvgarder les changement avec date dans un fichier logs.txt
+void Library::sauvegardeFichier(const string& message) {
+    ofstream fichier("logs.txt", ios::app);
+    if (!fichier.is_open()) {
+        cout << "Erreur : impossible d'ouvrir le fichier logs.txt\n";
+        return;
+    }
+
+    time_t live = time(nullptr);
+    tm* local = localtime(&live);
+
+    char date[20];
+    strftime(date, sizeof(date), "%Y-%m-%d %H:%M:%S", local);
+
+    fichier << "Date -> " << date << " : " << message << "\n";
+    fichier.close();
+}
