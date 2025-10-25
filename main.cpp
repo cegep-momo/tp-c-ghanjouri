@@ -44,6 +44,35 @@ string getInput(const string& prompt) {
     return input;
 }
 
+bool confirmationSuppMsg(const Book* _book){
+     cout << "\nConfirmation de suppression\n";
+    if (_book) {
+        cout << "Livre : " << _book->toString() << "\n";
+        
+    }
+    cout << "Voulez-vous vraiment supprimer ce livre ? (o/n) : ";
+    string reponse;
+    getline(cin, reponse);
+
+    if (reponse.empty()) {
+        cout << "Réponse vide. Suppression annulée.\n";
+        return false;
+    }
+
+    char choix = tolower(reponse[0]); // on gère les maju/min
+
+    switch (choix) {
+        case 'o':
+            return true;   // confirme la supp
+        case 'n':
+            cout << "Suppression annulée.\n";
+            return false;
+        default:
+            cout << "Réponse invalide. Suppression annulée.\n";
+            return false;
+    }
+}
+
 int main() {
     Library library;
     FileManager fileManager;

@@ -110,7 +110,7 @@ void Book::fromFileFormat(const string& line){
     getline(iss, author, '|');
     getline(iss, isbn, '|');
     getline(iss, availableStr, '|');
-    getline(iss, borrowerName, '|');
+    getline(iss, borrowerName);
 
     if (availableStr == "1")
         isAvailable = true;
