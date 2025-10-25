@@ -178,6 +178,53 @@ void Library::displayAvailableBooks() {
     }
 }
 
+void Library::displayAllBooksSortByTitle() {
+    if (books.empty()) {
+        cout << "Aucun livre à afficher.\n";
+        return;
+    }
+
+    vector<Book*> triLivre;
+    for (auto& b : books)
+        triLivre.push_back(b.get());
+
+    // on tri par titre
+    sort(triLivre.begin(), triLivre.end(),
+         [](Book* a, Book* b) {
+             return a->getTitle() < b->getTitle();
+         });
+
+    cout << "\n=== Livre trié par titre  ===\n";
+    for (size_t i = 0; i < triLivre.size(); ++i) { 
+        cout << "\nLivre " << (i + 1) << " :\n";
+        cout << triLivre[i]->toString() << "\n";
+        cout << "-------------------------\n";
+    }
+}
+// on trie par l'auteur
+void Library::displayAllBooksSortByAuthor() {
+    if (books.empty()) {
+        cout << "Aucun livre à afficher.\n";
+        return;
+    }
+
+    vector<Book*> tri;
+    for (auto& b : books)
+        tri.push_back(b.get());
+
+    sort(tri.begin(), tri.end(),
+         [](Book* a, Book* b) {
+             return a->getAuthor() < b->getAuthor();
+         });
+
+    cout << "\n=== Livre trié par auteur ===\n";
+    for (size_t i = 0; i < tri.size(); ++i) {
+        cout << "\nLivre " << (i + 1) << " :\n";
+        cout << tri[i]->toString() << "\n";
+        cout << "-------------------------\n";
+    }
+}
+
 // Display all users
 void Library::displayAllUsers() {
     if (users.empty()) {

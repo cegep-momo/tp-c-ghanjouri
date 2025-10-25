@@ -17,7 +17,7 @@ private:
 public:
     // Constructor and destructor
     Library();
-    ~Library() = default;
+    ~Library() = default; 
     
     // Book management
     void addBook(const Book& book);
@@ -41,6 +41,8 @@ public:
     void displayAllBooks();
     void displayAvailableBooks();
     void displayAllUsers();
+    void displayAllBooksSortByTitle(); // nouvelle fonction
+    void displayAllBooksSortByAuthor();// nouvelle fonction
     
     // Statistics
     int getTotalBooks() const;
