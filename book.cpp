@@ -65,9 +65,29 @@ void Book::checkOut(const string& borrower){
     isAvailable = false; // q qlq emprente livre , il nest plus dispo
     borrowerName = borrower; 
 }
-// invers de checkout, on rend dispo le livre sans personne
+// l'invers de checkout, on rend dispo le livre sans personne
 void Book::returnBook(){
     isAvailable = true;
     borrowerName = "";
 }
+
+string Book::toString() const {
+    string statut;
+
+    // etat du livre
+    if (isAvailable)
+        statut = "Disponible";
+    else
+        statut= "Emprunté";
+
+    // si livre est emprunté, on ajoute le nom
+    if (!isAvailable && !borrowerName.empty()) {
+        statut += " (emprunté par: " + borrowerName + ")";
+    }
+
+    return statut;
+}
+
+
+
 
