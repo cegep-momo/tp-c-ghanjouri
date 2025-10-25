@@ -33,11 +33,11 @@ public:
     void setBorrowerName(const string& name);
     
     // Methods
-    void checkOut(const string& borrower);
-    void returnBook();
+    void checkOut(const string& borrower); //marque le livre comme non disponible
+    void returnBook();//rend le livre disponible
     string toString() const;
-    string toFileFormat() const;
-    void fromFileFormat(const string& line);
+    string toFileFormat() const;//sérialise le livre en une seule ligne
+    void fromFileFormat(const string& line); //lit une ligne + désérialisation
 };
 
 #endif
